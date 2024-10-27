@@ -34,6 +34,19 @@ struct NODE* splitPath(char* pathName, char* baseName, char* dirName){
         strcpy(baseName, "");
         return root;
     }
-    
+
+    // grab where the last slash is in pathName
+    char* lastSlash = strrchr(pathName, '/');
+
+    // splits pathName into dirName and baseName, only if the string contains '/'
+    if (lastSlash) {
+        strncpy(dirName, pathName, lastSlash - pathName);
+        dirName[lastSlash - pathName] = '\0';
+        strcpy(baseName, lastSlash + 1);
+    } else {
+        strcpy(dirName, "");
+        strcpy(baseName, pathName);
+    }
+        
     return NULL;
 }
