@@ -14,7 +14,7 @@ void mkdir(char pathName[]){
 
     // no input to mkdir or path provided is root, throw error
     if (strcmp(pathName, "/") == 0) {
-        printf("MKDIR ERROR: no path provided");
+        printf("MKDIR ERROR: no path provided\n");
         return;
     }
 
@@ -34,7 +34,7 @@ void mkdir(char pathName[]){
         // loop through children via sibling pointers, check if directory already exists
         while (child) {
             if (strcmp(child->name, baseName) == 0 && child->fileType == 'D') {
-                printf("MKDIR ERROR: directory %s already exists", baseName);
+                printf("MKDIR ERROR: directory %s already exists\n", baseName);
                 return;
             }
             child = child->siblingPtr;
