@@ -31,20 +31,14 @@ void mkdir(char pathName[]){
         // declare a node to iterate through children / siblings
         struct NODE* child = parentDir->childPtr;
 
-        // declare a node to track the last sibling that exists
-        struct NODE* lastSibling = child;
-
         // loop through children via sibling pointers, check if directory already exists
         while (child) {
             if (strcmp(child->name, baseName) == 0 && child->fileType == 'D') {
                 printf("MKDIR ERROR: directory %s already exists", baseName);
                 return;
             }
-            lastSibling = child;
             child = child->siblingPtr;
         }
-
-        printf("MKDIR SUCCESS: node %s successfully created", pathName);
 
         // create a new node, allocate memory
         struct NODE* mkdirNew = (struct NODE*) malloc(sizeof(struct NODE));
@@ -57,11 +51,17 @@ void mkdir(char pathName[]){
         mkdirNew->fileType = 'D';
 
         // link to either last existing sibling or parent if first child
-        if (lastSibling) {
-            lastSibling->siblingPtr = mkdirNew;
-        } else {
+        if (parentDir->childPtr == NULL) {
             parentDir->childPtr = mkdirNew;
+        } else {
+            struct NODE* lastSibling = parentDir->childPtr;
+            while (lastSibling->siblingPtr) {
+                lastSibling = lastSibling->siblingPtr;
+            }
+            lastSibling->siblingPtr = mkdirNew;
         }
+
+        printf("MKDIR SUCCESS: node %s successfully created\n", pathName;
 
     }
 
@@ -130,7 +130,7 @@ struct NODE* splitPath(char* pathName, char* baseName, char* dirName){
 
         // if not found, throw an error and return a null pointer
         if (!found) {
-            printf("ERROR: directory %s does not exist", tokenized);
+            printf("ERROR: directory %s does not exist\n", dirName);
             return NULL;
         }
 
