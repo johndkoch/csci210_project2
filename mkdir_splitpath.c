@@ -12,7 +12,58 @@ void mkdir(char pathName[]){
     //
     // YOUR CODE TO REPLACE THE PRINTF FUNCTION BELOW
 
-    
+    // no input to mkdir, throw error
+    if (strcmp(pathName, "") == 0) {
+        printf("MKDIR ERROR: no path provided");
+        return;
+    }
+
+    // initialize strings to hold baseName and dirName
+    char* baseName;
+    char* dirName;
+
+    // call splitPath, storing return node in a node pointer
+    struct NODE* parentDir = splitPath(pathName, baseName, dirName);
+
+    // only call if parentDir exists
+    if (parentDir) {
+
+        // declare a node to iterate through children / siblings
+        struct NODE* child = parentDir->child;
+
+        // declare a node to track the last sibling that exists
+        struct NODE* lastSibling = child;
+
+        // loop through children via sibling pointers, check if directory already exists
+        while (child) {
+            if (strcmp(child->name, baseName) == 0 && child->fileType == 'D') {
+                printf("MKDIR ERROR: directory %s already exists", baseName);
+                return;
+            }
+            lastSibling = child;
+            child = child->siblingPtr;
+        }
+
+        // create a new node, allocate memory
+        struct NODE* mkdirNew = (struct NODE*) malloc(sizeof(struct NODE));
+
+        // initialize new node's values
+        strcpy(mkdirNew->name, baseName);
+        mkdirNew->childPtr = NULL;
+        mkdirNew->siblingPtr = NULL;
+        mkdirNew->parentPtr = parentDir;
+        mkdirNew->fileType = 'D';
+
+        // link to either last existing sibling or parent if first child
+        if (lastSibling) {
+            lastSibling->siblingPtr = mkdirNew;
+        } else {
+            parentDir->childPtr = mkdirNew;
+        }
+
+    }
+
+    return;
 }
 
 //handles tokenizing and absolute/relative pathing options
