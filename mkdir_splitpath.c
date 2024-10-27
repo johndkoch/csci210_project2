@@ -65,8 +65,8 @@ struct NODE* splitPath(char* pathName, char* baseName, char* dirName){
         int found = 0;
 
         // loop through siblings
-        while (currentNode) {
-            if (strcmp(currentNode->name, tokenized) == 0) {
+        while (currentNode->childPtr) {
+            if (strcmp(currentNode->childPtr->name, tokenized) == 0) {
                 currentNode = currentNode->childPtr;
                 found = 1;
                 break;
