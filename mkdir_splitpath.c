@@ -20,7 +20,7 @@ void mkdir(char pathName[]){
 
     // initialize strings to hold baseName and dirName
     char* baseName = (char *)malloc(sizeof(char)*100);
-    char* dirName = (char*)malloc(sizeof(char)*100));
+    char* dirName = (char *)malloc(sizeof(char)*100);
 
     // call splitPath, storing return node in a node pointer
     struct NODE* parentDir = splitPath(pathName, baseName, dirName);
