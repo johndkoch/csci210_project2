@@ -12,9 +12,7 @@ void mkdir(char pathName[]){
     //
     // YOUR CODE TO REPLACE THE PRINTF FUNCTION BELOW
 
-    printf("TO BE IMPLEMENTED\n");
-
-    return;
+    
 }
 
 //handles tokenizing and absolute/relative pathing options
@@ -64,13 +62,17 @@ struct NODE* splitPath(char* pathName, char* baseName, char* dirName){
         // indicator of if a name match is found
         int found = 0;
 
+        // declare node to keep track of children and iterate through siblings
+        struct NODE* child = currentNode->childPtr;
+
         // loop through siblings
-        while (currentNode->childPtr) {
-            if (strcmp(currentNode->childPtr->name, tokenized) == 0) {
-                currentNode = currentNode->childPtr;
+        while (child) {
+            if (strcmp(child->name, tokenized) == 0) {
+                currentNode = child;
                 found = 1;
                 break;
             }
+            child = child->siblingPtr;
         }
 
         // if not found, throw an error and return a null pointer
