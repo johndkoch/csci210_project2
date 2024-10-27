@@ -77,9 +77,11 @@ struct NODE* splitPath(char* pathName, char* baseName, char* dirName){
             printf("ERROR: directory %s does not exist", tokenized);
             return NULL;
         }
-        
+
+        // token grabber
         tokenized = strtok(NULL, "/");
     }
-    
+
+    // return the last checked node
     return currentNode;
 }
