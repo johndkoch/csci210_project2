@@ -44,10 +44,10 @@ void mkdir(char pathName[]){
             child = child->siblingPtr;
         }
 
+        printf("MKDIR SUCCESS: node %s successfully created", pathName);
+
         // create a new node, allocate memory
         struct NODE* mkdirNew = (struct NODE*) malloc(sizeof(struct NODE));
-
-        printf("MKDIR SUCCESS: node %s successfully created", pathName);
 
         // initialize new node's values
         strcpy(mkdirNew->name, baseName);
