@@ -70,6 +70,7 @@ struct NODE* splitPath(char* pathName, char* baseName, char* dirName){
                 currentNode = currentNode->childPtr;
                 found = 1;
                 break;
+            }
         }
 
         // if not found, throw an error and return a null pointer
