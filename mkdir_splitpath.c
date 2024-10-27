@@ -46,7 +46,22 @@ struct NODE* splitPath(char* pathName, char* baseName, char* dirName){
     } else {
         strcpy(dirName, "");
         strcpy(baseName, pathName);
+        return cwd;
     }
-        
+
+    // create a node pointer starting at current directory node, used to track directory existence
+    struct NODE* currentNode = cwd;
+
+    // create a copy of dirName that can be ran through strtok
+    char* tokenDirString;
+    strcpy(tokenDirString, dirName);
+    
+    // string that stores tokens of pathName, grab first token
+    char* tokenized = strtok(pathName, "/");
+
+    while (tokenized) {
+        tokenized = strtok(NULL, "/");
+    }
+    
     return NULL;
 }
