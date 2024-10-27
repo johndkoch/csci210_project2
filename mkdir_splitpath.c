@@ -13,7 +13,7 @@ void mkdir(char pathName[]){
     // YOUR CODE TO REPLACE THE PRINTF FUNCTION BELOW
 
     // no input to mkdir or path provided is root, throw error
-    if (strcmp(pathName, "") == 0 || pathName == NULL) {
+    if (strcmp(pathName, "/") == 0) {
         printf("MKDIR ERROR: no path provided");
         return;
     }
