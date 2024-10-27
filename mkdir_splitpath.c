@@ -27,5 +27,13 @@ struct NODE* splitPath(char* pathName, char* baseName, char* dirName){
 
     // YOUR CODE HERE
     //
+
+    // edge case, pathName = "/"
+    if (strcmp(pathName, "/") == 0) {
+        strcpy(dirName, "/");
+        strcpy(baseName, "");
+        return root;
+    }
+    
     return NULL;
 }
