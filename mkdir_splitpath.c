@@ -61,6 +61,8 @@ void mkdir(char pathName[]){
             parentDir->childPtr = mkdirNew;
         }
 
+        printf("MKDIR SUCCESS: node %s successfully created", pathName);
+
     }
 
     return;
