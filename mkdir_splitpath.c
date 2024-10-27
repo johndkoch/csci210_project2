@@ -108,7 +108,7 @@ struct NODE* splitPath(char* pathName, char* baseName, char* dirName){
     strcpy(tokenDirString, dirName);
     
     // string that stores tokens of pathName, grab first token
-    char* tokenized = strtok(pathName, "/");
+    char* tokenized = strtok(tokenDirString, "/");
 
     // iterating through pathName
     while (tokenized) {
