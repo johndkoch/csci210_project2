@@ -59,9 +59,27 @@ struct NODE* splitPath(char* pathName, char* baseName, char* dirName){
     // string that stores tokens of pathName, grab first token
     char* tokenized = strtok(pathName, "/");
 
+    // iterating through pathName
     while (tokenized) {
+        // indicator of if a name match is found
+        int found = 0;
+
+        // loop through siblings
+        while (currentNode) {
+            if (strcmp(currentNode->name, tokenized) == 0) {
+                currentNode = currentNode->childPtr;
+                found = 1;
+                break;
+        }
+
+        // if not found, throw an error and return a null pointer
+        if (!found) {
+            printf("ERROR: directory %s does not exist", tokenized);
+            return NULL;
+        }
+        
         tokenized = strtok(NULL, "/");
     }
     
-    return NULL;
+    return currentNode;
 }
