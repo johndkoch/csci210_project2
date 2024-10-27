@@ -29,7 +29,7 @@ void mkdir(char pathName[]){
     if (parentDir) {
 
         // declare a node to iterate through children / siblings
-        struct NODE* child = parentDir->child;
+        struct NODE* child = parentDir->childPtr;
 
         // declare a node to track the last sibling that exists
         struct NODE* lastSibling = child;
