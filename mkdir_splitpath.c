@@ -104,7 +104,7 @@ struct NODE* splitPath(char* pathName, char* baseName, char* dirName){
     struct NODE* currentNode = cwd;
 
     // create a copy of dirName that can be ran through strtok
-    char* tokenDirString;
+    char* tokenDirString = (char*) malloc(strlen(dirName) + 1);
     strcpy(tokenDirString, dirName);
     
     // string that stores tokens of pathName, grab first token
@@ -137,6 +137,8 @@ struct NODE* splitPath(char* pathName, char* baseName, char* dirName){
         // token grabber
         tokenized = strtok(NULL, "/");
     }
+
+    free(tokenDirString);
 
     // return the last checked node
     return currentNode;
